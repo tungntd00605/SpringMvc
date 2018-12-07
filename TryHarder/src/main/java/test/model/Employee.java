@@ -18,6 +18,10 @@ public class Employee implements Serializable {
     @Column(columnDefinition = "varchar(255) COLLATE utf8_general_ci")
     private String email;
 
+    @ManyToOne
+    @JoinColumn(name = "DEPT_ID")
+    private Department department;
+
     public Integer getId() {
         return Id;
     }
@@ -40,5 +44,13 @@ public class Employee implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

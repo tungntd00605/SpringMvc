@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import test.model.Department;
 import test.model.Employee;
+import test.service.DepartmentService;
 import test.service.EmployeeService;
 
 import java.util.List;
@@ -15,16 +17,19 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+    private DepartmentService departmentService;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ModelAndView addEmployee(@ModelAttribute("employee") Employee employee){
+    public ModelAndView addEmployee(@ModelAttribute Employee employee){
         employeeService.addEmployee(employee);
         return new ModelAndView("redirect:/");
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addEmployeeForm(Model model){
+        List<Department> listDept = departmentService.getAllDepartment();
         model.addAttribute("employee", new Employee());
+        model.addAttribute("listDept", listDept);
         return "add";
     }
 
