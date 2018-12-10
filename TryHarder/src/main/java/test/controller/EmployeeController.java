@@ -3,6 +3,7 @@ package test.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,15 +13,20 @@ import test.model.Employee;
 import test.service.DepartmentService;
 import test.service.EmployeeService;
 
+import javax.validation.Valid;
 import java.util.List;
 @Controller
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
     private DepartmentService departmentService;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ModelAndView addEmployee(@ModelAttribute Employee employee){
+    public ModelAndView addEmployee(@Valid @ModelAttribute Employee employee, BindingResult result){
+        if(result.hasErrors()){
+            return new ModelAndView("add");
+        }
         employeeService.addEmployee(employee);
         return new ModelAndView("redirect:/");
     }

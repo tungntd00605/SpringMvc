@@ -1,6 +1,9 @@
 package test.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -13,6 +16,8 @@ public class Employee implements Serializable {
     private Integer Id;
 
     @Column(columnDefinition = "varchar(255) COLLATE utf8_general_ci")
+    @NotEmpty(message = "Tên không được để trống")
+    @Size(min = 2, message = "Tên không được nhỏ hơn 2 ký tự")
     private String name;
 
     @Column(columnDefinition = "varchar(255) COLLATE utf8_general_ci")
