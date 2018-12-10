@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Employee</title>
+</head>
+<body>
+<div align="center">
+    <h1>New Employee</h1>
+    <form action="save" method="post" th:action="@{/save}" th:object="${employee}">
+        <table>
+            <hidden name="id"/>
+            <tr>
+                <td>Name:</td>
+                <td>
+                    <input type="text" th:field="*{name}" name="name"/>
+                    <p th:if="${#fields.hasErrors('name')}" th:text="${#fields.errors('name')[0]}"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>
+                    <input type="text" th:field="*{email}" name="email"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Department:</td>
+                <td>
+                    <select th:field="*{department.id}">
+                        <option th:each="dept : ${listDept}"  th:value="${dept.id}" th:text="${dept.name}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Save"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

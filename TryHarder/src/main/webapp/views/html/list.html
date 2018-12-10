@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Employee</title>
+</head>
+<body>
+    <!--/*@thymesVar id="listEmp" type="java"*/-->
+    <ul th:each="item : ${listEmp}">
+        <li th:text="${item.id + ' - ' + item.name + ' - ' + item.email + ' - ' + item.department.name}"></li>
+    </ul>
+</body>
+</html>
