@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Class list</title>
+</head>
+<body>
+    <h1>Class List</h1>
+    <ul th:each="clazz: ${clazzes}">
+        <li><span th:text="${clazz.name}"></span><button><a th:href="@{'/class/' + ${clazz.id}} ">Detail</a></button></li>
+    </ul>
+</body>
+</html>

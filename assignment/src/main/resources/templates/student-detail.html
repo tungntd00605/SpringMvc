@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Detail</title>
+</head>
+<body>
+    <h1>Student Detail</h1>
+    <div>
+        <label><b>Id:</b> </label>
+        <p th:text="${student.id}"></p>
+    </div>
+    <div>
+        <label><b>RollNumber:</b> </label>
+        <p th:text="${student.rollNumber}"></p>
+    </div>
+    <div>
+        <label><b>Email:</b> </label>
+        <p th:text="${student.email}"></p>
+    </div>
+
+    <div>
+        <label><b>Name:</b> </label>
+        <p th:text="${student.name}"></p>
+    </div>
+    <div>
+        <ul th:each="clazz: ${clazzes}">
+            <li><span th:text="${clazz.name}  "></span> <button>Join</button></li>
+        </ul>
+    </div>
+</body>
+</html>
