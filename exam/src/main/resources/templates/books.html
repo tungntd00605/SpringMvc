@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<body>
+    <h1>List book</h1>
+    <ul th:each="book: ${books}">
+        <li><span th:text="${book.name} + ' - ' + ${book.author} + ' - ' + ${book.genre} + ' - ' + ${book.publisher.name}"></span></li>
+    </ul>
+    <h3 th:if="${books.size() == 0}">Not found books with search key</h3>
+</body>
+</html>
